@@ -1,40 +1,41 @@
 import {
-  AngularFireList,
-  AngularFireObject,
-  AngularFireDatabase,
+    AngularFireList,
+    AngularFireObject,
+    AngularFireDatabase,
 } from "@angular/fire/database";
-import { Billing } from "./../models/billing";
-import { Injectable } from "@angular/core";
+import {Billing} from "./../models/billing";
+import {Injectable} from "@angular/core";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class ShippingService {
-  shippings: AngularFireList<Billing>;
-  shipping: AngularFireObject<Billing>;
-  constructor(private db: AngularFireDatabase) {
-    this.getshippings();
-  }
+    shippings: AngularFireList<Billing>;
+    shipping: AngularFireObject<Billing>;
 
-  createshippings(data: Billing) {
-    this.shippings.push(data);
-  }
+    constructor(private db: AngularFireDatabase) {
+        this.getshippings();
+    }
 
-  getshippings() {
-    this.shippings = this.db.list("shippings");
-    return this.shippings;
-  }
+    createshippings(data: Billing) {
+        this.shippings.push(data);
+    }
 
-  getshippingById(key: string) {
-    this.shipping = this.db.object("products/" + key);
-    return this.shipping;
-  }
+    getshippings() {
+        this.shippings = this.db.list("shippings");
+        return this.shippings;
+    }
 
-  updateshipping(data: Billing) {
-    this.shippings.update(data.$key, data);
-  }
+    getshippingById(key: string) {
+        this.shipping = this.db.object("products/" + key);
+        return this.shipping;
+    }
 
-  deleteshipping(key: string) {
-    this.shippings.remove(key);
-  }
+    updateshipping(data: Billing) {
+        this.shippings.update(data.$key, data);
+    }
+
+    deleteshipping(key: string) {
+        this.shippings.remove(key);
+    }
 }

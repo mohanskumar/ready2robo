@@ -1,15 +1,16 @@
-import { Injectable } from "@angular/core";
-import { tasks } from "../moke_data/tasks";
+import {Injectable} from "@angular/core";
+import {tasks} from "../moke_data/tasks";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class TaskService {
-  constructor() {}
+    constructor() {
+    }
 
-  getTasks() {
-    return new Promise((resolve, reject) => {
-      resolve(tasks);
-    });
-  }
+    getTasks() {
+        return new Promise((resolve, reject) => {
+            resolve(tasks);
+        });
+    }
 }

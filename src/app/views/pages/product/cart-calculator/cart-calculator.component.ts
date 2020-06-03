@@ -1,33 +1,36 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  SimpleChange,
-  SimpleChanges,
+    Component,
+    OnInit,
+    Input,
+    OnChanges,
+    SimpleChange,
+    SimpleChanges,
 } from "@angular/core";
-import { Product } from "../../../../shared/models/product";
+import {Product} from "../../../../shared/models/product";
 
 @Component({
-  selector: "app-cart-calculator",
-  templateUrl: "./cart-calculator.component.html",
-  styleUrls: ["./cart-calculator.component.scss"],
+    selector: "app-cart-calculator",
+    templateUrl: "./cart-calculator.component.html",
+    styleUrls: ["./cart-calculator.component.scss"],
 })
 export class CartCalculatorComponent implements OnInit, OnChanges {
-  @Input() products: Product[];
+    @Input() products: Product[];
 
-  totalValue = 0;
-  constructor() {}
+    totalValue = 0;
 
-  ngOnChanges(changes: SimpleChanges) {
-    const dataChanges: SimpleChange = changes.products;
+    constructor() {
+    }
 
-    const products: Product[] = dataChanges.currentValue;
-    this.totalValue = 0;
-    products.forEach((product) => {
-      this.totalValue += product.productPrice;
-    });
-  }
+    ngOnChanges(changes: SimpleChanges) {
+        const dataChanges: SimpleChange = changes.products;
 
-  ngOnInit() {}
+        const products: Product[] = dataChanges.currentValue;
+        this.totalValue = 0;
+        products.forEach((product) => {
+            this.totalValue += product.productPrice;
+        });
+    }
+
+    ngOnInit() {
+    }
 }

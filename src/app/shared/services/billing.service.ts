@@ -1,40 +1,41 @@
 import {
-  AngularFireList,
-  AngularFireObject,
-  AngularFireDatabase,
+    AngularFireList,
+    AngularFireObject,
+    AngularFireDatabase,
 } from "@angular/fire/database";
-import { Billing } from "./../models/billing";
-import { Injectable } from "@angular/core";
+import {Billing} from "./../models/billing";
+import {Injectable} from "@angular/core";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class BillingService {
-  billings: AngularFireList<Billing>;
-  billing: AngularFireObject<Billing>;
-  constructor(private db: AngularFireDatabase) {
-    this.getBillings();
-  }
+    billings: AngularFireList<Billing>;
+    billing: AngularFireObject<Billing>;
 
-  createBillings(data: Billing) {
-    this.billings.push(data);
-  }
+    constructor(private db: AngularFireDatabase) {
+        this.getBillings();
+    }
 
-  getBillings() {
-    this.billings = this.db.list("billings");
-    return this.billings;
-  }
+    createBillings(data: Billing) {
+        this.billings.push(data);
+    }
 
-  getBillingById(key: string) {
-    this.billing = this.db.object("products/" + key);
-    return this.billing;
-  }
+    getBillings() {
+        this.billings = this.db.list("billings");
+        return this.billings;
+    }
 
-  updateBilling(data: Billing) {
-    this.billings.update(data.$key, data);
-  }
+    getBillingById(key: string) {
+        this.billing = this.db.object("products/" + key);
+        return this.billing;
+    }
 
-  deleteBilling(key: string) {
-    this.billings.remove(key);
-  }
+    updateBilling(data: Billing) {
+        this.billings.update(data.$key, data);
+    }
+
+    deleteBilling(key: string) {
+        this.billings.remove(key);
+    }
 }
